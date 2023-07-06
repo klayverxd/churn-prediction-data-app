@@ -1,0 +1,72 @@
+# - customerID: Um ID único que identifica cada cliente;
+# - gender: sexo do cliente - Masculino, Feminino;
+# - SeniorCitizen: Se o cliente é idoso ou não (1, 0);
+# - Partner: Se o cliente tem um parceiro ou não (Sim, Não);
+# - Dependents: Se o cliente possui dependentes ou não (Sim, Não);
+# - tenure: Número de meses que o cliente permaneceu na empresa;
+# - PhoneService: Se o cliente possui atendimento telefônico ou não (Sim, Não);
+# - MultipleLines: Se o cliente tem várias linhas ou não (Sim, Não, Sem atendimento telefônico);
+# - InternetService: Provedor de internet do cliente (DSL, Fibra ótica, Não);
+# - OnlineSecurity: Se o cliente tem segurança online ou não (Sim, Não, Sem serviço de internet);
+# - OnlineBackup: Se o cliente tem backup online ou não (Sim, Não, Sem serviço de internet);
+# - DeviceProtection: Se o cliente tem proteção de dispositivo ou não (Sim, Não, Sem serviço de internet);
+# - TechSupport: Se o cliente tem suporte técnico ou não (Sim, Não, Sem serviço de internet);
+# - StreamingTV: Se o cliente tem streaming de TV ou não (Sim, Não, Sem serviço de internet);
+# - StreamingMovies: Se o cliente tem streaming de filmes ou não (Sim, Não, Sem serviço de internet);
+# - Contract: O prazo do contrato do cliente (mês a mês, um ano, dois anos);
+# - PaperlessBilling: Se o cliente tem faturamento sem papel ou não (Sim, Não);
+# - PaymentMethod: Método de pagamento do cliente (Cheque Eletrônico, Cheque Postado, Transferência Bancária (automática), Cartão de Crédito (automático));
+# - MonthlyCharges: O valor cobrado mensalmente do cliente;
+# - TotalCharges: O valor total cobrado do cliente;
+# - Churn: Se o cliente cancelou ou não (Sim ou Não).
+
+'gender'
+'SeniorCitizen'
+'Partner'
+'Dependents'
+'tenure'
+'PhoneService'
+'PaperlessBilling'
+'MonthlyCharges'
+'TotalCharges'
+
+'MultipleLines_No'
+'MultipleLines_No phone service'
+'MultipleLines_Yes'
+
+'InternetService_DSL'
+'InternetService_Fiber optic'
+'InternetService_No'
+
+'OnlineSecurity_No'
+'OnlineSecurity_No internet service'
+'OnlineSecurity_Yes'
+
+'OnlineBackup_No'
+'OnlineBackup_No internet service'
+'OnlineBackup_Yes'
+
+'DeviceProtection_No'
+'DeviceProtection_No internet service'
+'DeviceProtection_Yes'
+
+'TechSupport_No'
+'TechSupport_No internet service'
+'TechSupport_Yes'
+
+'StreamingTV_No'
+'StreamingTV_No internet service'
+'StreamingTV_Yes'
+
+'StreamingMovies_No'
+'StreamingMovies_No internet service'
+'StreamingMovies_Yes'
+
+'Contract_Month-to-month'
+'Contract_One year'
+'Contract_Two year'
+
+'PaymentMethod_Bank transfer (automatic)'
+'PaymentMethod_Credit card (automatic)'
+'PaymentMethod_Electronic check'
+'PaymentMethod_Mailed check'
