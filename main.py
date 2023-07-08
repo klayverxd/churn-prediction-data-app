@@ -1,7 +1,7 @@
 import streamlit as st
 
 import pandas as pd
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 
 import joblib
 
@@ -10,6 +10,7 @@ modelo_SVM = joblib.load('models/modelo_SVM.pkl')
 modelo_KNN = joblib.load('models/modelo_KNN.pkl')
 
 telecom_cust = pd.read_csv('sample_data/WA_Fn-UseC_-Telco-Customer-Churn.csv')
+df_numerico = pd.read_csv('sample_data/df_numerico.csv')
 
 # =-=-=-= APRESENTAÇÃO DOS DADOS =-=-=-=
 
@@ -49,43 +50,43 @@ MonthlyCharges = st.number_input('Valor cobrado mensalmente do cliente.', 29.85)
 TotalCharges = st.number_input('Valor cobrado do cliente.', 29.85)
 
 MultipleLines = st.radio(
-    "MultipleLines?",
+    "Tem várias linhas?",
     ('Sim', 'Não', 'Sem atendimento telefônico'), 0)
 
 InternetService = st.radio(
-    "InternetService?",
+    "Provedor de internet do cliente.",
     ('DSL', 'Fibra ótica', 'Não'), 0)
 
 OnlineSecurity = st.radio(
-    "OnlineSecurity?",
+    "O cliente tem segurança online?",
     ('Sim', 'Não', 'Sem serviço de internet'), 0)
 
 OnlineBackup = st.radio(
-    "OnlineBackup?",
+    "O cliente tem backup online?",
     ('Sim', 'Não', 'Sem serviço de internet'), 0)
 
 DeviceProtection = st.radio(
-    "DeviceProtection?",
+    "O cliente tem proteção de dispositivo?",
     ('Sim', 'Não', 'Sem serviço de internet'), 0)
 
 TechSupport = st.radio(
-    "TechSupport?",
+    "O cliente tem suporte técnico?",
     ('Sim', 'Não', 'Sem serviço de internet'), 0)
 
 StreamingTV = st.radio(
-    "StreamingTV?",
+    "O cliente tem streaming de TV?",
     ('Sim', 'Não', 'Sem serviço de internet'), 0)
 
 StreamingMovies = st.radio(
-    "StreamingMovies?",
+    "O cliente tem streaming de filmes?",
     ('Sim', 'Não', 'Sem serviço de internet'), 0)
 
 Contract = st.radio(
-    "Contract?",
+    "O prazo do contrato do cliente.",
     ('Mês a mes', 'Um ano', 'Dois anos'), 0)
 
 PaymentMethod = st.radio(
-    "PaymentMethod?",
+    "Método de pagamento do cliente.",
     ('Cheque Eletrônico', 'Cheque Postado', 'Transferência Bancária (automática)', 'Cartão de Crédito (automático)'), 0)
 
 
@@ -150,19 +151,25 @@ mapeamento = {'Não': 0, 'Sim': 1, 'Feminino': 0, 'Masculino': 1}
 
 df_input[columns] = df_input[columns].replace(mapeamento)
 
-# cols_to_normalize = ['tenure', 'MonthlyCharges', 'TotalCharges']
-
-# scaler = StandardScaler()
-# df_input[cols_to_normalize] = scaler.fit_transform(df_input[cols_to_normalize])
-
 cols_to_normalize = ['tenure', 'MonthlyCharges', 'TotalCharges']
-data_to_normalize = df_input[cols_to_normalize]
 
+scaler = StandardScaler()
 
-normalized_data = MinMaxScaler().fit_transform(data_to_normalize)
-# normalized_data = StandardScaler().fit_transform(data_to_normalize)
+nova_linha = pd.DataFrame({'tenure': [df_input['tenure'][0]], 
+                           'MonthlyCharges': [df_input['MonthlyCharges'][0]], 
+                           'TotalCharges': [df_input['TotalCharges'][0]]})
 
-df_input[cols_to_normalize] = normalized_data
+df_numerico = pd.concat([df_numerico, nova_linha], ignore_index=True)
+
+df_numerico[cols_to_normalize] = scaler.fit_transform(df_numerico[cols_to_normalize])
+
+ultima_linha = df_numerico.tail(1)
+
+df_input[['tenure', 'MonthlyCharges', 'TotalCharges']] = [ultima_linha['tenure'][7032], 
+                                                          ultima_linha['MonthlyCharges'][7032], 
+                                                          ultima_linha['TotalCharges'][7032]]
+
+df_input[cols_to_normalize]
 
 # =-=-=-= RESULTADO DA PREDIÇÃO =-=-=-=
 if st.button('Prever'):
