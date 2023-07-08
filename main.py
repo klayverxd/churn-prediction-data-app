@@ -6,6 +6,8 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 import joblib
 
 modelo_MLP = joblib.load('models/modelo_MLP.pkl')
+modelo_SVM = joblib.load('models/modelo_SVM.pkl')
+modelo_KNN = joblib.load('models/modelo_KNN.pkl')
 
 telecom_cust = pd.read_csv('sample_data/WA_Fn-UseC_-Telco-Customer-Churn.csv')
 
@@ -164,9 +166,17 @@ df_input[cols_to_normalize] = normalized_data
 
 # =-=-=-= RESULTADO DA PREDIÇÃO =-=-=-=
 if st.button('Prever'):
-    resultado = modelo_MLP.predict(df_input)
-
     df_input
 
-    "Resultado da predição:" 
-    resultado
+    resultado_MLP = modelo_MLP.predict(df_input)
+    resultado_SVM = modelo_SVM.predict(df_input)
+    resultado_KNN = modelo_KNN.predict(df_input)
+
+    "Resultado da predição MLP:" 
+    resultado_MLP
+
+    "Resultado da predição SVM:" 
+    resultado_SVM
+
+    "Resultado da predição KNN:" 
+    resultado_KNN
