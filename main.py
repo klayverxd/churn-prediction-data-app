@@ -14,7 +14,7 @@ df_numerico = pd.read_csv('sample_data/df_numerico.csv')
 
 # =-=-=-= APRESENTAÇÃO DOS DADOS =-=-=-=
 
-"Base de dados Telco Customer Churn"
+"### Base de dados Telco Customer Churn"
 telecom_cust
 
 
@@ -169,21 +169,21 @@ df_input[['tenure', 'MonthlyCharges', 'TotalCharges']] = [ultima_linha['tenure']
                                                           ultima_linha['MonthlyCharges'][7032], 
                                                           ultima_linha['TotalCharges'][7032]]
 
-df_input[cols_to_normalize]
-
 # =-=-=-= RESULTADO DA PREDIÇÃO =-=-=-=
 if st.button('Prever'):
-    df_input
-
     resultado_MLP = modelo_MLP.predict(df_input)
     resultado_SVM = modelo_SVM.predict(df_input)
     resultado_KNN = modelo_KNN.predict(df_input)
 
-    "Resultado da predição MLP:" 
+    "## Ocorre Churn?"
+    "### 0 - Não"
+    "### 1 - Sim"
+
+    "#### Resultado da predição MLP:" 
     resultado_MLP
 
-    "Resultado da predição SVM:" 
+    "#### Resultado da predição SVM:" 
     resultado_SVM
 
-    "Resultado da predição KNN:" 
+    "#### Resultado da predição KNN:" 
     resultado_KNN
